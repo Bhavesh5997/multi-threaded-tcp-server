@@ -1,0 +1,63 @@
+System overview
+The block diagram illustrates the system-level overview of the project, which is built around a
+RISC-V based System-on-Chip (SoC) architecture. It highlights the interaction between the
+processing core, memory units, and various peripherals through an AXI (Advanced eXtensible
+Interface) bus, ensuring seamless data communication and system efficiency.
+
+NEORV32 Core:
+The NEORV32 is a soft-core RISC-V processor running on the Lattice FPGA. It is responsible
+for executing the Zephyr-based firmware, managing tasks, and controlling peripherals such as
+I2C, GPIO, and UART. The processor fetches data from the HTU21D sensor, processes it, and
+sends it to the host display. Its flexibility and open-source nature make it an ideal choice for
+embedded applications like this temperature monitoring system.
+
+External Interrupt Controller:
+The External Interrupt Controller handles hardware interrupts from peripherals, ensuring real-
+time responsiveness. Instead of constantly polling sensors and peripherals, the processor can
+perform other tasks and respond only when an interrupt is triggered. This improves efficiency
+and power consumption while ensuring timely data processing from the sensor and
+communication interfaces.
+
+CLINT:
+CLINT stands for Core Local Interrupter. It is a component in RISC-V based systems that
+handles timer interrupts and software interrupts for each individual RISC-V core. CLINT
+provides a timer for each core, allowing for time-related operations and manages software-
+generated interrupts, aiding in task scheduling and system management.
+
+Timer:
+The Timer module provides timekeeping and periodic scheduling for various tasks in the
+system. It is essential for defining sampling intervals for temperature measurement and for
+handling real-time operations within Zephyr RTOS. Timers ensure that sensor data is acquired
+at regular intervals, making it crucial for stable and predictable system behaviour.
+
+AXI Bus:
+The AXI Bus serves as the high-speed data highway connecting the processor, memory, and
+peripherals. It ensures efficient data transfer between the NEORV32 core and components like
+RAM, I2C, GPIO, and UART. A well-structured bus system is needed to prevent bottlenecks,
+ensuring smooth communication and optimal system performance.
+
+Boot ROM:
+Boot ROM holds the firmware code necessary for system startup and operation. Since it is
+read-only, it ensures that the processor always executes a predefined program upon power-up,
+preventing accidental overwrites. This memory is essential for a stable boot process and system
+reliability.
+
+Data RAM:
+Data RAM is used for storing runtime data, including sensor readings, system variables, and
+program execution data. It is necessary for holding temporary values that are actively used by
+the processor. The availability of adequate RAM enhances system performance, ensuring
+smooth execution of tasks without memory bottlenecks.
+
+I2C (Inter Integrated Circuit):
+The I2C module enables communication between the processor and temperature sensor. It uses
+the I2C protocol, a simple and power-efficient method for sensor interfacing. This module is
+essential for fetching real-time temperature data, making it a key component of the system.
+GPIO (General Purpose Input/Output):
+The GPIO module allows the processor to control external components, such as LEDs. In this
+project, it is used to toggle an LED. GPIO is essential for adding basic control functions to the
+system.
+
+UART (Universal Asynchronous Receiver Transmitter):
+The UART module is responsible for serial communication between the NEORV32 processor
+and the host PC. It allows real-time data logging, debugging, and visualization of sensor
+readings. UART is necessary for monitoring data.
