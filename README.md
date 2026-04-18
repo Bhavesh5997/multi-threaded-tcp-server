@@ -42,9 +42,7 @@ Open a terminal and run:
 Open another terminal and run:
 ```bash
 ./client/bin/client 127.0.0.1 9898
-```
 
-```
 To clean all generated build artifacts, run:
 make clean
 ```
