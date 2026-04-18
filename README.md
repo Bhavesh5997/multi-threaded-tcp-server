@@ -44,6 +44,11 @@ Open another terminal and run:
 ./client/bin/client 127.0.0.1 9898
 ```
 
+```
+To clean all generated build artifacts, run:
+make clean
+```
+
 ### Notes
 - Use `127.0.0.1` when both client and server are running on the same machine.
 - If running on different machines, replace `127.0.0.1` with the server’s actual IP address.
